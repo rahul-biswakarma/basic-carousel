@@ -1,21 +1,5 @@
 var currentSlide = 0;
 
-window.onload = function () {
-  assignSlideNumber();
-};
-
-function assignSlideNumber() {
-  var slides = document.getElementsByClassName("slide");
-  for (var i = 0; i < slides.length; i++) {
-    slides[
-      i
-    ].innerHTML += `<div class="absolute top-[0] left-[0] opacity-5 text-[20rem] px-[2rem] font-bold font-mono leading-[90%]">${
-      i + 1
-    }
-      </div>`;
-  }
-}
-
 function nextSlide() {
   var slides = document.getElementsByClassName("slide");
   currentSlide++;
@@ -39,5 +23,12 @@ function showSlide(index) {
   for (var i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  slides[index].style.display = "block";
+  slides[index].style.display = "flex";
+}
+
+function updateText(i) {
+  console.log(document.getElementById(`h${i}`));
+  document.getElementById(`h${i}`).innerHTML = document.getElementById(
+    `input${i}`
+  ).value;
 }
