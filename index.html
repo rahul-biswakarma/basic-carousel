@@ -10,9 +10,39 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
+<body class="h-[100vh]">
+    <div class="relative w-full h-full flex overflow-hidden">
+        <!-- Left Arrow -->
+        <div onclick="prevSlide()"
+            class="absolute w-[10%] h-full top-[0px] left-[0px] z-20 flex items-center justify-center opacity-60 hover:opacity-100 transition-all">
+            <svg class="w-[5rem] rotate-[-90deg]" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <circle cx="12" cy="12" r="9" />
+                <path d="m12 8-4 4m4-4v8m4-4-4-4" />
+            </svg>
+        </div>
 
+        <!-- Carousel Containers -->
+        <div class="slide relative min-w-full min-h-full bg-cyan-400 z-10">
+            
+        </div>
+        <div class="slide relative min-w-full min-h-full bg-rose-400 z-10"></div>
+        <div class="slide relative min-w-full min-h-full bg-lime-400 z-10"></div>
+        <div class="slide relative min-w-full min-h-full bg-orange-400 z-10"></div>
+        <!-- Carousel Containers Ends -->
 
+        <!-- Right Arrow -->
+        <div onclick="nextSlide()"
+            class="absolute w-[10%] h-full top-[0px] right-[0px] z-20 flex items-center justify-center opacity-60 hover:opacity-100 transition-all">
+            <svg class="w-[5rem] rotate-[90deg]" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <circle cx="12" cy="12" r="9" />
+                <path d="m12 8-4 4m4-4v8m4-4-4-4" />
+            </svg>
+        </div>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 
