@@ -11,6 +11,8 @@ var slideBaseClass = [
 
 var slideHeader = ["Name", "Age", "Height", "Liking", "Disliking"];
 var slideAnswer = ["Rahul", "21", "180", "No", "No"];
+var slideColor = ["#64dfe8", "#fb7185", "#a3e635", "#fb923c", "#f472b6"];
+var defaultColor = "#fff";
 
 var defaultQuestion = "Who are you?";
 var defaultAnswer = "Fine";
@@ -18,11 +20,24 @@ var defaultAnswer = "Fine";
 var slides = document.getElementsByClassName("slide");
 
 function updateSlides() {
+  // Fetching data from local storage
   if (localStorage.getItem("slideAnswer"))
     slideAnswer = JSON.parse(localStorage.getItem("slideAnswer"));
+
+  // Fetching color from local storage
+  if (localStorage.getItem("slideColor"))
+    slideColor = JSON.parse(localStorage.getItem("slideColor"));
+
+  // Targeting all slides
   var slides = document.getElementsByClassName("slide");
+
+  // Looping through all slides
   for (var i = 0; i < slides.length; i++) {
+    // Add base class
     slides[i].classList.add(...slideBaseClass);
+
+    // Add slide color
+    slides[i].style.backgroundColor = slideColor[i];
 
     // Add slide number
     slides[
@@ -43,9 +58,9 @@ function updateSlides() {
       slideAnswer[i] ? slideAnswer[i] : defaultAnswer
     }</span></h1>
                 <div class="flex flex-col gap-[1rem] bg-white/30 px-[30%] py-[10%] transition-all">
-                    <input class="border-b-2 border-black p-[1rem] transition-all" type="text" name="input0" id="input${
+                    <input class="border-b-2 border-black p-[1rem] transition-all" type="text" name="input${
                       i + 1
-                    }"
+                    }" id="input${i + 1}"
                         value="${
                           slideAnswer[i] ? slideAnswer[i] : defaultAnswer
                         }" placeholder="Slide ${i + 1}" />
@@ -57,7 +72,9 @@ function updateSlides() {
                 <div class="flex gap-[10px] bg-white/30 px-[30%] py-[10%] transition-all">Change Color
                 <input type="color" name="color" id="color${
                   i + 1
-                }" onchange="changeColor(${i + 1})"></div>
+                }" onchange="changeColor(${i + 1})" value="${
+      slideColor[i] ? slideColor[i] : "#ffffff"
+    }"></div>
             </div>
         </div>
         `;
@@ -72,4 +89,6 @@ function changeColor(i) {
   slides[i - 1].style.backgroundColor = document.getElementById(
     `color${i}`
   ).value;
+  slideColor[i - 1] = document.getElementById(`color${i}`).value;
+  localStorage.setItem("slideColor", JSON.stringify(slideColor));
 }
