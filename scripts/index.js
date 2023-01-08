@@ -27,8 +27,10 @@ function showSlide(index) {
 }
 
 function updateText(i) {
+  slideAnswer[i - 1] = document.getElementById(`input${i}`).value;
   console.log(document.getElementById(`h${i}`));
   document.getElementById(`h${i}`).innerHTML = document.getElementById(
     `input${i}`
   ).value;
+  localStorage.setItem("slideAnswer", JSON.stringify(slideAnswer));
 }

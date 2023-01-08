@@ -9,9 +9,17 @@ var slideBaseClass = [
   "transition-all",
 ];
 
+var slideHeader = ["Name", "Age", "Height", "Liking", "Disliking"];
+var slideAnswer = ["Rahul", "21", "180", "No", "No"];
+
+var defaultQuestion = "Who are you?";
+var defaultAnswer = "Fine";
+
 var slides = document.getElementsByClassName("slide");
 
 function updateSlides() {
+  if (localStorage.getItem("slideAnswer"))
+    slideAnswer = JSON.parse(localStorage.getItem("slideAnswer"));
   var slides = document.getElementsByClassName("slide");
   for (var i = 0; i < slides.length; i++) {
     slides[i].classList.add(...slideBaseClass);
@@ -29,14 +37,18 @@ function updateSlides() {
         <div class="max-w-[800px] h-80% flex items-center justify-center">
         
             <div class="flex items-center flex-col gap-[5rem] justify-center">
-                <h1 id="h${i + 1}" class="text-9xl font-bold">Slide ${
-      i + 1
-    }</h1>
+                <h1 class="text-3xl">${
+                  slideHeader[i] ? slideHeader[i] : defaultQuestion
+                }: <span id="h${i + 1}" class="font-bold">${
+      slideAnswer[i] ? slideAnswer[i] : defaultAnswer
+    }</span></h1>
                 <div class="flex flex-col gap-[1rem] bg-white/30 px-[30%] py-[10%] transition-all">
                     <input class="border-b-2 border-black p-[1rem] transition-all" type="text" name="input0" id="input${
                       i + 1
                     }"
-                        value="Slide ${i + 1}" placeholder="Slide ${i + 1}" />
+                        value="${
+                          slideAnswer[i] ? slideAnswer[i] : defaultAnswer
+                        }" placeholder="Slide ${i + 1}" />
                     <button onclick="updateText(${i + 1})"
                         class="font-bold bg-black/60 px-[2rem] py-[0.5rem] text-white transition-all">
                         Update
