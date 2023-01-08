@@ -34,9 +34,9 @@ function updateSlides() {
 
     //   Add slide text
     slides[i].innerHTML += `
-        <div class="max-w-[800px] h-80% flex items-center justify-center">
+        <div class="max-w-[800px] h-80% flex items-center justify-center transition-all">
         
-            <div class="flex items-center flex-col gap-[5rem] justify-center">
+            <div class="flex items-center flex-col gap-[5rem] justify-center transition-all">
                 <h1 class="text-3xl">${
                   slideHeader[i] ? slideHeader[i] : defaultQuestion
                 }: <span id="h${i + 1}" class="font-bold">${
